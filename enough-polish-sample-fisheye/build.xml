@@ -3,11 +3,6 @@
 	
 
 <property file="${user.name}.properties" />
-<property name="wtk.home" location="/home/enough/dev/WTK2.1" />
-<property name="nokia.home" location="/home/enough/dev/Nokia" />
-<property name="polish.home" location="../enough-polish-build" />
-<property  name="mpp.home" location="/home/enough/dev/mpp-sdk"/>
-	<property  name="device" value="Nokia/Series60E2" />
 	<property  name="devices" value="${device}" />
 
 	
@@ -32,23 +27,25 @@
 </target>
 		
 <target name="init">
-  	<property name="test" value="false"/>
+  	<property name="test" value="true"/>
 	<property name="deploy-url" value=""/>
 </target>
     
 <target depends="init" name="j2mepolish">
 	<j2mepolish>
 	    <!-- general settings -->
-		<info copyright="Copyright 2011 Enough Software. All rights reserved." 
-			deleteConfirm="Do you really want to kill me?" 
+		<info 
 			description="A simple menu screen." 
 			icon="iconlarge0.png" 
-			infoUrl="http://www.enough.de" 
 			jarName="${polish.vendor}-${polish.name}-${polish.locale}-fisheye.jar" 
 			jarUrl="${deploy-url}${polish.jarName}" 
 			name="FishEye" 
-			vendorName="Enough Software" 
 			version="1.3.4"
+
+			vendorName="ComUnity"
+			infoUrl="http://www.vunanigroup.co.za"
+			copyright="Copyright 2010 ComUnity. All rights reserved."
+			deleteConfirm="Do you really want to remove the application?" 
 	    />
 		<!-- selection of supported devices -->
 		<deviceRequirements if="test">
@@ -117,7 +114,15 @@
 				-->
 			</resources>
 		</build>
-		<emulator if="test" />
+		<emulator if="test"
+			wait="true"
+			securityDomain="trusted"
+			enableProfiler="false"
+			enableMemoryMonitor="false"
+			enableNetworkMonitor="false"
+			>
+			<debugger port="8000" />
+		</emulator>
 	</j2mepolish>
 </target>
 

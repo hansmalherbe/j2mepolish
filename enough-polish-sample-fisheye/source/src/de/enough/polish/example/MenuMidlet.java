@@ -104,6 +104,7 @@ public class MenuMidlet extends MIDlet implements CommandListener {
 	}
 
 	protected void startApp() throws MIDletStateChangeException {
+		System.out.println("setting display.");
 		//#debug
 		System.out.println("setting display.");
 		this.display = Display.getDisplay(this);
